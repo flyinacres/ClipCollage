@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8150" systemVersion="15A204g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8122"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,8 +16,45 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ClipCollage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENQ-Rl-L61">
+                                <rect key="frame" x="210" y="60" width="181" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="Zyy-De-HVe"/>
+                                    <constraint firstAttribute="width" constant="181" id="xC1-tr-jPC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 qpiapps. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtC-MX-XLZ">
+                                <rect key="frame" x="116" y="547" width="369" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="369" id="QLd-9q-xrs"/>
+                                    <constraint firstAttribute="height" constant="21" id="qTQ-NY-6qr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trex.png" translatesAutoresizingMaskIntoConstraints="NO" id="4t8-3L-5S9">
+                                <rect key="frame" x="154" y="119" width="292" height="363"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="292" id="M0L-6G-Mlh"/>
+                                    <constraint firstAttribute="height" constant="363" id="OnS-g2-g87"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90196084980000002" green="0.94117653369999998" blue="0.97254908080000002" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="ENQ-Rl-L61" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4Xx-wg-W5T"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="gtC-MX-XLZ" secondAttribute="bottom" constant="32" id="ISJ-BS-h4K"/>
+                            <constraint firstItem="4t8-3L-5S9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="VEm-jc-oeY"/>
+                            <constraint firstItem="gtC-MX-XLZ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="YVS-DN-6BA"/>
+                            <constraint firstItem="ENQ-Rl-L61" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="40" id="mFc-sh-l9S"/>
+                            <constraint firstItem="4t8-3L-5S9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zQt-84-1PD"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +62,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="trex.png" width="677" height="800"/>
+    </resources>
 </document>
