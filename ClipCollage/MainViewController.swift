@@ -19,18 +19,15 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     @IBOutlet weak var mainImage: UIImageView!
     
+    @IBOutlet weak var creationLabel: UILabel!
 
     @IBAction func clearAll(sender: UIButton) {
-        curBackgroundImage = nil
-        mainImage = nil
-        interactiveViews.removeAll()
-        for subview in compositionView.subviews {
-            subview.removeFromSuperview()
-        }
+        clearComposition()
     }
+
     
     @IBAction func addTextView(sender: AnyObject) {
-        _ = InteractiveTextView(str: "Say What?", sv: compositionView)
+        _ = InteractiveTextView(str: "Say What? 🎵", sv: compositionView)
     }
 
 
@@ -70,7 +67,22 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
         self.presentViewController(image, animated: true, completion: nil)
     }
     
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        if motion == .MotionShake {
+            clearComposition()
+        }
+    }
 
+    // Clear everything so that users can start again
+    func clearComposition() {
+        curBackgroundImage = nil
+        mainImage = nil
+        interactiveViews.removeAll()
+        for subview in compositionView.subviews {
+            subview.removeFromSuperview()
+        }
+    }
+    
     // Callback to pick image and get metadata.  Although, apparently metadata is only available
     // with camera images, not saved images.
     // TODO: See if there is a way for me to add metadata to images
@@ -105,10 +117,14 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
 
     
     func saveEntireView(saveView: UIView) -> UIImage {
+        creationLabel.text = "Created with ClipCollage, by qpiapps.com"
+        view.bringSubviewToFront(creationLabel)
         UIGraphicsBeginImageContext(saveView.bounds.size);
         saveView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let outputImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
+        creationLabel.text = ""
+        view.sendSubviewToBack(creationLabel)
         
         return outputImage
     }
@@ -134,6 +150,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.sendSubviewToBack(creationLabel)
+
         if let backgroundImage = curBackgroundImage {
             mainImage.image = backgroundImage
         }

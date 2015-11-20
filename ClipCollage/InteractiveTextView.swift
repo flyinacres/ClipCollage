@@ -44,19 +44,6 @@ class InteractiveTextView: InteractiveView, UITextViewDelegate {
         
         // Start the text in the horizontal center, but above the midline
         superView.center = CGPoint(x: compositionView.center.x, y: compositionView.center.y - 100)
-
-        
-//        textView.translatesAutoresizingMaskIntoConstraints = false
-//        superView.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        print("text view center: \(textView.center)")
-//        let xCenterConstraint = NSLayoutConstraint(item: textView, attribute: .CenterX, relatedBy: .Equal, toItem: superView, attribute: .CenterX, multiplier: 1, constant: 0)
-//        superView.addConstraint(xCenterConstraint)
-//        
-//        let yCenterConstraint = NSLayoutConstraint(item: textView, attribute: .CenterY, relatedBy: .Equal, toItem: superView, attribute: .CenterY, multiplier: 1, constant: 0)
-//        superView.addConstraint(yCenterConstraint)
-//        print("text view center after constraints: \(textView.center)")
-//        print("text view frame after constraints: \(textView.frame)")
         
         textView.userInteractionEnabled = true
         textView.delegate = self

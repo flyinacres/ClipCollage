@@ -110,11 +110,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         
         curResult = 0
         artPageNo = 1
-        getArt(artSearchKey, pageNo: artPageNo)
+        getArtBySearchKey(artSearchKey, pageNo: artPageNo)
         
     }
     
-    func getArt(searchKey: String, pageNo: Int) {
+    // Fetch art from openclipart.com by use of a search term
+    func getArtBySearchKey(searchKey: String, pageNo: Int) {
         
         // This seemed to be working at one point, now is always claiming no connection, even
         // when the app works
@@ -139,6 +140,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         }
     }
     
+    // Fetch art from openclipart.com by way of ids, instead of a search term
     func getArtByIds(artIds: [Int], completion: (() -> Void)!) {
         startAnimatingForWait()
         let idString = artIds.map({"\($0)"}).joinWithSeparator(",")
@@ -157,8 +159,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         }
     }
     
-    
-    func successfulArtFetch(responseResult: AnyObject?, errorMessage: String, completion: (() -> Void)!) {
+    // An art set was successfully fetched.  Get all of the information from the JSON
+    // struct, and show the first image if there is one
+    func successfulArtFetch(responseResult: AnyObject?, errorMessage: String, completion: ((count: Int, image: UIImage?) -> Void)!) {
         self.stopAnimatingForWait()
         
         if let value = responseResult {
@@ -195,7 +198,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
     // load the image as specified by the count element in the currentArtSet
     // The optional completion function will be called after the image has been
     // loaded successfully
-    func loadImageAlamoStyle(count: Int, completion: (() -> Void)!) {
+    func loadImageAlamoStyle(count: Int, completion: ((count: Int, image: UIImage?) -> Void)!) {
         
         if currentArtSet != nil {
             let urlString =  currentArtSet!["payload"][count]["svg"]["png_thumb"].string!
@@ -209,24 +212,41 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
                     if error != nil {
                         print(error)
                     } else {
+                        if completion != nil {
+                            completion(count: count, image: UIImage(data: data!))
+                        }
+
                         self.displayNewImage(UIImage(data: data!)!,
                             title: currentArtSet!["payload"][count]["title"].string!,
                             countInfo: "\(curResult+1) of \(totalResults)")
-                        self.nextButton.enabled = true
-                        self.selectButton.enabled = true
-                        if curResult > 0 {
-                            self.backButton.enabled = true
-                        }
+                        self.setArtButtonsProperly()
                         
-                        if completion != nil {
-                            completion()
-                        }
                     }
             }
             
         }
     }
     
+    // The buttons to select the current, or fetch previous/next art
+    // must be kept in sync with the current state of the artwork set
+    func setArtButtonsProperly() {
+        nextButton.enabled = true
+        selectButton.enabled = true
+        backButton.enabled = true
+
+        if totalResults < 1 {
+            nextButton.enabled = false
+            selectButton.enabled = false
+        }
+        
+        if curResult < 1 {
+            backButton.enabled = false
+        }
+
+    }
+    
+    // Display a newly found image.  Get rid of the previous one.   Add all gesture
+    // recognizers so that the image can be selected, etc.
     func displayNewImage(newImage: UIImage, title: String, countInfo: String) {
         
         // Remove the previously showing art
@@ -362,11 +382,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
             curResult = 0
         }
         
-        backButton.enabled = true
-        if curResult < 1 {
-            backButton.enabled = false
-        }
-        
+        setArtButtonsProperly()
         
         if currentImageNum >= currentArtSet!["payload"].count {
             currentImageNum = 0
@@ -376,7 +392,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
             }
             // If there is only one page, no need to ever fetch more
             if totalPages > 1 {
-                getArt(artSearchKey, pageNo: artPageNo)
+                getArtBySearchKey(artSearchKey, pageNo: artPageNo)
             } else {
                 // If it doesn't get loaded, gotta force the image to show up
                 loadImageAlamoStyle(currentImageNum, completion: nil)
@@ -398,9 +414,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
             curResult--
         }
         
-        if curResult < 1 {
-            backButton.enabled = false
-        }
+        setArtButtonsProperly()
         
         if currentImageNum < 0 {
             // Do not wrap backward.  Disable the back button when
@@ -411,7 +425,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
                 artPageNo = 0
             } else {
                 // Only get the art if we are not already at the first page
-                getArt(artSearchKey, pageNo: artPageNo)
+                getArtBySearchKey(artSearchKey, pageNo: artPageNo)
             }
         } else {
             loadImageAlamoStyle(currentImageNum, completion: nil)
@@ -429,9 +443,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         super.viewDidLoad()
         activityIndicator.alpha = 0
         
-        backButton.enabled = false
-        nextButton.enabled = false
-        selectButton.enabled = false
+        setArtButtonsProperly()
         
         artType.delegate = self;
         artType.text = artSearchKey
@@ -445,11 +457,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         if totalResults > 0 {
             countLabel.text = "\(curResult+1) of \(totalResults)"
             
-            nextButton.enabled = true
-            selectButton.enabled = true
-            if curResult > 0 {
-                backButton.enabled = true
-            }
+            setArtButtonsProperly()
         }
         
         artworkCollectionView.layer.borderWidth = 2
@@ -476,29 +484,36 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         // This assumes one page of results
         for var i = 0; i < totalResults; i++ {
             loadImageAlamoStyle(i, completion: saveWhenImageLoaded)
-            
         }
     }
+    
+    // a queue to save the image without freezing the App UI
+    let saveQueue = dispatch_queue_create("saveQueue", DISPATCH_QUEUE_SERIAL)
     
     // This is a callback that is invoked when loadImageAlamoStyle has
     // succesfully loaded a relevant image.  Only after the image has
     // been loaded can it be saved to permanent storage
-    func saveWhenImageLoaded() {
-        let artId =  currentArtSet!["payload"][currentImageNum]["id"].double!
-        let title =  currentArtSet!["payload"][currentImageNum]["title"].string!
-        let newArtInfo = ArtInfo(artId: artId, title: title, image: curImage!)
-        
-        persistUniqueArtwork(newArtInfo)
-        persistentArt.insert(newArtInfo, atIndex: 0)
-        
-        // Now that this is done, on to the next image
-        currentImageNum++
-        
-        if currentImageNum == totalResults {
-            dispatch_async(dispatch_get_main_queue(),  {
-                self.artworkCollectionView.reloadData()
-                currentImageNum = 0
-            })
+    func saveWhenImageLoaded(count: Int, image: UIImage?) {
+        // dispatch with gcd.
+        dispatch_async(saveQueue) {
+            let artId =  currentArtSet!["payload"][count]["id"].double!
+            let title =  currentArtSet!["payload"][count]["title"].string!
+            let newArtInfo = ArtInfo(artId: artId, title: title, image: image!)
+
+            
+            self.persistUniqueArtwork(newArtInfo)
+            persistentArt.insert(newArtInfo, atIndex: 0)
+            
+            // Now that this is done, on to the next image
+            currentImageNum++
+            
+            // After the last one, update the UI
+            if currentImageNum == totalResults {
+                dispatch_async(dispatch_get_main_queue(),  {
+                    self.artworkCollectionView.reloadData()
+                    currentImageNum = 0
+                })
+            }
         }
     }
     
@@ -561,9 +576,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         displayNewImage(persistentArt[i].image, title: persistentArt[i].title, countInfo: "")
         showSelectionAnimation()
         
-        nextButton.enabled = false
-        selectButton.enabled = false
-        backButton.enabled = false
+        setArtButtonsProperly()
+        
         selectedArt.append(ai)
     }
     

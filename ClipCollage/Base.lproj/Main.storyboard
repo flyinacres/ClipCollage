@@ -43,8 +43,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyA-Lk-BeO">
-                                <rect key="frame" x="96" y="522" width="128" height="30"/>
-                                <state key="normal" title="Make Composition"/>
+                                <rect key="frame" x="108" y="522" width="105" height="30"/>
+                                <state key="normal" title="Make a Collage"/>
                                 <connections>
                                     <segue destination="Giz-np-Yeq" kind="show" id="6RT-bi-Fne"/>
                                 </connections>
@@ -228,15 +228,25 @@
                                             </mask>
                                         </variation>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKW-t2-2Bn">
+                                        <rect key="frame" x="8" y="403" width="292" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="MKW-t2-2Bn" firstAttribute="leading" secondItem="Psl-PY-UXL" secondAttribute="leading" constant="8" id="0LB-kW-Rb0"/>
+                                    <constraint firstItem="MKW-t2-2Bn" firstAttribute="centerX" secondItem="Psl-PY-UXL" secondAttribute="centerX" id="9OS-mx-jtq"/>
                                     <constraint firstItem="apM-9p-fxn" firstAttribute="trailing" secondItem="Psl-PY-UXL" secondAttribute="trailingMargin" constant="8" id="Arb-Xf-6CX"/>
                                     <constraint firstItem="apM-9p-fxn" firstAttribute="centerX" secondItem="Psl-PY-UXL" secondAttribute="centerX" constant="-4" id="LDd-AI-8io"/>
                                     <constraint firstAttribute="width" constant="300" id="P38-se-QQg"/>
+                                    <constraint firstAttribute="trailing" secondItem="MKW-t2-2Bn" secondAttribute="trailing" constant="8" id="ddT-aQ-eCE"/>
                                     <constraint firstItem="apM-9p-fxn" firstAttribute="top" secondItem="Psl-PY-UXL" secondAttribute="topMargin" constant="-8" id="erh-Dr-lIk"/>
                                     <constraint firstAttribute="height" constant="400" id="hJQ-BH-cnT"/>
                                     <constraint firstItem="apM-9p-fxn" firstAttribute="leading" secondItem="Psl-PY-UXL" secondAttribute="leadingMargin" constant="-8" id="hJj-O8-W2i"/>
+                                    <constraint firstAttribute="bottom" secondItem="MKW-t2-2Bn" secondAttribute="bottom" constant="8" id="iw3-2H-Fkn"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="apM-9p-fxn" secondAttribute="bottom" constant="-8" id="kzl-pM-wrh"/>
                                     <constraint firstItem="apM-9p-fxn" firstAttribute="centerY" secondItem="Psl-PY-UXL" secondAttribute="centerY" constant="-5.5" id="vof-Sz-fGu"/>
                                     <constraint firstAttribute="width" secondItem="Psl-PY-UXL" secondAttribute="height" multiplier="3:4" id="vv0-29-XnW"/>
@@ -251,8 +261,8 @@
                                 </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euK-em-O9D">
-                                <rect key="frame" x="121" y="522" width="78" height="30"/>
-                                <state key="normal" title="Choose Art"/>
+                                <rect key="frame" x="126" y="522" width="69" height="30"/>
+                                <state key="normal" title="Select Art"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="3UQ-Js-nYB"/>
                                 </connections>
@@ -262,13 +272,6 @@
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveImage:" destination="Giz-np-Yeq" eventType="touchUpInside" id="d2w-WG-U4m"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7i-JV-G6o">
-                                <rect key="frame" x="18" y="522" width="61" height="30"/>
-                                <state key="normal" title="Add Text"/>
-                                <connections>
-                                    <action selector="addTextView:" destination="Giz-np-Yeq" eventType="touchUpInside" id="vAo-Xn-InY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgg-H9-em9">
@@ -285,11 +288,18 @@
                                     <action selector="clearAll:" destination="Giz-np-Yeq" eventType="touchUpInside" id="eGA-al-p8x"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7i-JV-G6o">
+                                <rect key="frame" x="16" y="522" width="86" height="30"/>
+                                <state key="normal" title="Add Text/😄"/>
+                                <connections>
+                                    <action selector="addTextView:" destination="Giz-np-Yeq" eventType="touchUpInside" id="vAo-Xn-InY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.90196084980000002" green="0.94117653369999998" blue="0.97254908080000002" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" constant="-8" id="1lG-dS-ABq"/>
-                            <constraint firstItem="L7i-JV-G6o" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" constant="2" id="4vx-it-9Rc"/>
+                            <constraint firstItem="L7i-JV-G6o" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" id="4vx-it-9Rc"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="qbX-eg-fMK" secondAttribute="bottom" constant="16" id="4zO-K1-del"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="top" secondItem="M9r-Af-YOq" secondAttribute="bottom" constant="4" id="8Hm-az-QqA"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="DYf-b3-aRo"/>
@@ -324,6 +334,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="compositionView" destination="Psl-PY-UXL" id="ezh-J9-5io"/>
+                        <outlet property="creationLabel" destination="MKW-t2-2Bn" id="jXf-6T-QyZ"/>
                         <outlet property="mainImage" destination="apM-9p-fxn" id="9tq-YI-315"/>
                     </connections>
                 </viewController>
