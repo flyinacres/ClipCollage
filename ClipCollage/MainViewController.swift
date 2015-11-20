@@ -28,6 +28,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     @IBAction func addTextView(sender: AnyObject) {
         _ = InteractiveTextView(str: "Say What? 🎵", sv: compositionView)
+        Flurry.logEvent("Add_Text");
     }
 
 
@@ -35,6 +36,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     @IBAction func saveImage(sender: AnyObject) {
         let alert = UIAlertController(title: "Save Composition", message: "Would you like to save this composition to your Photo Library?", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+            Flurry.logEvent("Save_Image");
             let savedmage = self.saveEntireView(self.compositionView)
             
             UIImageWriteToSavedPhotosAlbum(savedmage, self,
@@ -93,7 +95,9 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
           let image = info[UIImagePickerControllerOriginalImage] as? UIImage
 //        let url = info[UIImagePickerControllerReferenceURL] as? NSURL
 //        let mediaType = info[UIImagePickerControllerMediaType] as? NSString
-        
+ 
+        Flurry.logEvent("Background_Image_Selected");
+
         // Make sure the image is properly oriented
         if let newImage = image {
             if (newImage.size.height > newImage.size.width) {

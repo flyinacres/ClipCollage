@@ -128,6 +128,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         //            return
         //        }
         
+        // Flurry update for the search info
+        let artParams = ["searchKey": "\(searchKey)"];
+        Flurry.logEvent("Search_Text", withParameters: artParams);
+        
         startAnimatingForWait()
         Alamofire.request(.GET, openClipArtSearchURL, parameters: ["query": searchKey, "amount": 10, "page": pageNo, "sort": "downloads"]).validate().responseJSON { response in
             switch response.result {
@@ -322,6 +326,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
                     persistentArt.insert(newArtInfo, atIndex: 0)
                     insertArtIntoCollection(newArtInfo)
                 }
+                
+                // Update the flurry info so that I get an idea as to what users are doing
+                let artParams = ["artId": "\(artId)"];
+                Flurry.logEvent("Artwork_selected", withParameters: artParams);
                 
             } else {
                 // If there are no results, this image is from the persistent set.
