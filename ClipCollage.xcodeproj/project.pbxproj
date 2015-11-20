@@ -95,23 +95,23 @@
 		A5CFD2701BFE56A400CF6EBA /* ClipCollage */ = {
 			isa = PBXGroup;
 			children = (
+				A5CFD2751BFE56A400CF6EBA /* Main.storyboard */,
+				A5CFD2941BFE581400CF6EBA /* MainViewController.swift */,
+				A5CFD2731BFE56A400CF6EBA /* ViewController.swift */,
 				A5CFD2861BFE57E800CF6EBA /* ArtInfo.swift */,
 				A5CFD2881BFE57E800CF6EBA /* ArtworkViewCell.swift */,
 				A5CFD2711BFE56A400CF6EBA /* AppDelegate.swift */,
-				A5CFD2731BFE56A400CF6EBA /* ViewController.swift */,
-				A5CFD2751BFE56A400CF6EBA /* Main.storyboard */,
+				A5CFD2901BFE580700CF6EBA /* InteractiveView.swift */,
 				A5CFD28E1BFE580700CF6EBA /* InteractiveImageView.swift */,
 				A5CFD28F1BFE580700CF6EBA /* InteractiveTextView.swift */,
-				A5CFD2901BFE580700CF6EBA /* InteractiveView.swift */,
-				A5CFD2941BFE581400CF6EBA /* MainViewController.swift */,
 				A5CFD2951BFE581400CF6EBA /* ManageArtwork.swift */,
 				A5CFD2961BFE581400CF6EBA /* Reachability.swift */,
-				A5CFD28C1BFE57FB00CF6EBA /* checkMark.png */,
-				A5CFD29A1BFE581B00CF6EBA /* trex.png */,
-				A5CFD27B1BFE56A400CF6EBA /* Assets.xcassets */,
 				A5CFD27D1BFE56A400CF6EBA /* LaunchScreen.storyboard */,
+				A5CFD27B1BFE56A400CF6EBA /* Assets.xcassets */,
 				A5CFD2801BFE56A400CF6EBA /* Info.plist */,
 				A5CFD2781BFE56A400CF6EBA /* ClipCollage.xcdatamodeld */,
+				A5CFD28C1BFE57FB00CF6EBA /* checkMark.png */,
+				A5CFD29A1BFE581B00CF6EBA /* trex.png */,
 			);
 			path = ClipCollage;
 			sourceTree = "<group>";

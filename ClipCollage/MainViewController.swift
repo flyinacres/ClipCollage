@@ -8,6 +8,7 @@
 
 import UIKit
 
+// The image currently used as the background, if any
 var curBackgroundImage: UIImage? = nil
 
 
@@ -29,20 +30,23 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
     
     @IBAction func addTextView(sender: AnyObject) {
-        _ = InteractiveTextView(str: "Grabbable Text", sv: compositionView)
-
-        // Need to set the delegate here, as we want clicks in this view to disable editing
-//        let itv = iv.interactiveView as! UITextView
-//        itv.delegate = self
+        _ = InteractiveTextView(str: "Say What?", sv: compositionView)
     }
 
 
     // Create and save the image in the composition view when requested
     @IBAction func saveImage(sender: AnyObject) {
-        let savedmage = saveEntireView(compositionView)
-        
-        UIImageWriteToSavedPhotosAlbum(savedmage, self,
-            "imageResult:didFinishSavingWithError:contextInfo:", nil)
+        let alert = UIAlertController(title: "Save Composition", message: "Would you like to save this composition to your Photo Library?", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+            let savedmage = self.saveEntireView(self.compositionView)
+            
+            UIImageWriteToSavedPhotosAlbum(savedmage, self,
+                "imageResult:didFinishSavingWithError:contextInfo:", nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { action in
+            print("Click of cancel button")
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     // Error that can result from attempting to save the image
@@ -94,22 +98,11 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     }
 
 
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func saveEntireView(saveView: UIView) -> UIImage {
         UIGraphicsBeginImageContext(saveView.bounds.size);

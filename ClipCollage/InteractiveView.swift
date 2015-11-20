@@ -31,6 +31,7 @@ class InteractiveView: NSObject {
         addGestureRecognizers()
         interactiveView.userInteractionEnabled = true
         compositionView.addSubview(interactiveView)
+        compositionView.bringSubviewToFront(interactiveView)
         interactiveViews.append(self)
     }
     

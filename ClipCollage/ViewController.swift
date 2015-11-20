@@ -10,40 +10,99 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+
+// All artwork that has been selected and should be added to the current composition
 var selectedArt: [ArtInfo] = []
+
+// The JSON describing the current set of clipart returned from openclipart.com
 var currentArtSet: JSON? = nil
+
+// The current image number in the current page of results
 var currentImageNum = 0
-var totalResults = 0
+
+// the current image number across all results should be 0 <= X <= totalResults
 var curResult = 0
+
+// The total number of results across all pages
+var totalResults = 0
+
+// The text key used to search for new clip art sets
 var artSearchKey = "penguins"
+
+// The current page in the clip art results
 var artPageNo = 1
+
+// The total number of pages in all of the clip art results
 var totalPages = 1
+
+// The current image shown on screen
 var curImage: UIImage? = nil
+
+// The view that the current image is displayed in
 var curView: UIView? = nil
+
+// The title associated with the current image
 var curTitle = ""
 
+
+// Manage the view which allows users to select clip art
 class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    // Identifies the prototype cell in the UICollectionView
     let reuseIdentifier = "artworkThumbnail"
     
+    // The URL for searching for clip art
+    let openClipArtSearchURL = "https://openclipart.org/search/json/"
+    
+    
+    // The check mark icon for indicating the selection of artwork
     @IBOutlet weak var checkMark: UIImageView!
     
+    // The activity indicator shown when art sets or images are loaded
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // The button for moving back in an art set (also left swipe will work)
     @IBOutlet weak var backButton: UIButton!
+    
+    // The button for moving forward in an art set (also right swipe will work)
     @IBOutlet weak var nextButton: UIButton!
+    
+    // The button for selecting a piece of art (also tapping the art will work)
     @IBOutlet weak var selectButton: UIButton!
+    
+    // The title of the artwork
     @IBOutlet weak var titleLabel: UILabel!
+    
+    // The count information for the current image (x of y)
     @IBOutlet weak var countLabel: UILabel!
+    
+    // The collection view for any selected artwork
     @IBOutlet weak var artworkCollectionView: UICollectionView!
     
-    
+    // The search text for picking new artwork
     @IBOutlet weak var artType: UITextField!
     
+    // The button indicating that new artwork should be searched for
     @IBAction func searchArt(sender: AnyObject) {
         searchForNewArt()
     }
     
+    // The button indicating that the current artwork should be selected
+    @IBAction func selectArt(sender: AnyObject) {
+        selectNewArt()
+    }
+    
+    // The button indicating that the next art in the set should be shown
+    @IBAction func getNextArt(sender: AnyObject) {
+        fetchNextArt()
+    }
+    
+    // The button indicating that the previous art in the set should be shown
+    @IBAction func getPreviousArt(sender: AnyObject) {
+        fetchPreviousArt()
+    }
+    
+    // Search for new art, assuming that there is some text in the text box
     func searchForNewArt() {
         if artType.text != nil {
             artSearchKey = artType.text!
@@ -54,13 +113,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         getArt(artSearchKey, pageNo: artPageNo)
         
     }
-    
-    @IBAction func selectArt(sender: AnyObject) {
-        selectNewArt()
-    }
-    
-    
-    let openClipArtSearchURL = "https://openclipart.org/search/json/"
     
     func getArt(searchKey: String, pageNo: Int) {
         
@@ -131,6 +183,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         activityIndicator.startAnimating()
     }
     
+    
     // Stop the wait animation, clean up
     func stopAnimatingForWait() {
         activityIndicator.stopAnimating()
@@ -138,6 +191,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         view.sendSubviewToBack(activityIndicator)
     }
     
+    
+    // load the image as specified by the count element in the currentArtSet
+    // The optional completion function will be called after the image has been
+    // loaded successfully
     func loadImageAlamoStyle(count: Int, completion: (() -> Void)!) {
         
         if currentArtSet != nil {
@@ -180,10 +237,20 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         let tapRec = UITapGestureRecognizer()
         tapRec.addTarget(self, action: "tappedView:")
         
+        let swipeRecLeft = UISwipeGestureRecognizer()
+        swipeRecLeft.direction = UISwipeGestureRecognizerDirection.Left
+        swipeRecLeft.addTarget(self, action: "swipedView:")
+        
+        let swipeRecRight = UISwipeGestureRecognizer()
+        swipeRecRight.direction = UISwipeGestureRecognizerDirection.Right
+        swipeRecRight.addTarget(self, action: "swipedView:")
+        
         let iv = UIImageView(image: newImage)
         iv.addGestureRecognizer(tapRec)
+        iv.addGestureRecognizer(swipeRecLeft)
+        iv.addGestureRecognizer(swipeRecRight)
         iv.userInteractionEnabled = true
-        iv.center = view.center
+        iv.center = CGPoint(x: view.center.x, y: view.center.y + 10)
         
         view.addSubview(iv)
         
@@ -195,9 +262,27 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         curView = iv
     }
     
+    
     // Tapping on a piece of art should add it to the selected list
     func tappedView(recognizer : UITapGestureRecognizer){
         selectNewArt()
+    }
+    
+    
+    // Allow next image to be selected by swipes
+    func swipedView(recognizer : UISwipeGestureRecognizer){
+        
+        switch recognizer.direction {
+            case UISwipeGestureRecognizerDirection.Right:
+                fetchPreviousArt()
+
+            case UISwipeGestureRecognizerDirection.Left:
+                fetchNextArt()
+
+            default:
+                break
+        }
+        
     }
     
     func selectNewArt() {
@@ -230,6 +315,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         }
     }
     
+    
     // If the data is unique, persist it and return true
     func persistUniqueArtwork(artInfo: ArtInfo) -> Bool{
         if ManageArtwork.findArtById(artInfo.artId) == nil {
@@ -239,6 +325,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         }
         return false
     }
+    
     
     func insertArtIntoCollection(artInfo: ArtInfo) {
         // Now insert the new item at the start of the collection view
@@ -261,7 +348,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
     }
     
     
-    @IBAction func getNextArt(sender: AnyObject) {
+    // Actually get the next art and adjust the various counts/pages
+    func fetchNextArt() {
+        // If there is no next artwork, don't try to get it
+        if nextButton.enabled == false {
+            return
+        }
+        
         currentImageNum++
         curResult++
         
@@ -290,10 +383,16 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
             }
         } else {
             loadImageAlamoStyle(currentImageNum, completion: nil)
-        }
-    }
+        }    }
     
-    @IBAction func getPreviousArt(sender: AnyObject) {
+    
+
+    
+    // Actually get the previous art and adjust the various counts/pages
+    func fetchPreviousArt() {
+        if backButton.enabled == false {
+            return
+        }
         currentImageNum--
         if curResult > 0 {
             curResult--

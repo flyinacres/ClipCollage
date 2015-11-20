@@ -19,7 +19,10 @@ class InteractiveTextView: InteractiveView, UITextViewDelegate {
     init(str: String, sv: UIView) {
         superView = UIView()
         textView = UITextView()
+        
         superView.addSubview(textView)
+
+
         
         super.init(tv: superView, sv: sv)
         
@@ -31,12 +34,29 @@ class InteractiveTextView: InteractiveView, UITextViewDelegate {
         
         textView.sizeToFit()
         
+        
         superView.backgroundColor = UIColor.lightGrayColor()
         textView.backgroundColor = UIColor.clearColor()
         textView.becomeFirstResponder()
+        textView.scrollEnabled = false
         
         superView.bounds = CGRectMake(textView.bounds.origin.x - itvMargin, textView.bounds.origin.y - itvMargin, textView.bounds.width + itvMargin, textView.bounds.height + itvMargin)
-        superView.center = compositionView.center
+        
+        // Start the text in the horizontal center, but above the midline
+        superView.center = CGPoint(x: compositionView.center.x, y: compositionView.center.y - 100)
+
+        
+//        textView.translatesAutoresizingMaskIntoConstraints = false
+//        superView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        print("text view center: \(textView.center)")
+//        let xCenterConstraint = NSLayoutConstraint(item: textView, attribute: .CenterX, relatedBy: .Equal, toItem: superView, attribute: .CenterX, multiplier: 1, constant: 0)
+//        superView.addConstraint(xCenterConstraint)
+//        
+//        let yCenterConstraint = NSLayoutConstraint(item: textView, attribute: .CenterY, relatedBy: .Equal, toItem: superView, attribute: .CenterY, multiplier: 1, constant: 0)
+//        superView.addConstraint(yCenterConstraint)
+//        print("text view center after constraints: \(textView.center)")
+//        print("text view frame after constraints: \(textView.frame)")
         
         textView.userInteractionEnabled = true
         textView.delegate = self
@@ -70,6 +90,7 @@ class InteractiveTextView: InteractiveView, UITextViewDelegate {
         textView.frame = CGRectMake(textView.frame.origin.x, textView.frame.origin.y, newSize.width, newSize.height)
         
         superView.bounds = CGRectMake(textView.bounds.origin.x - itvMargin, textView.bounds.origin.y - itvMargin, textView.bounds.width + itvMargin, textView.bounds.height + itvMargin)
+
     }
 
 

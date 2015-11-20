@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ClipCollage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENQ-Rl-L61">
-                                <rect key="frame" x="210" y="60" width="181" height="53"/>
+                                <rect key="frame" x="210" y="52" width="181" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="Zyy-De-HVe"/>
                                     <constraint firstAttribute="width" constant="181" id="xC1-tr-jPC"/>
@@ -33,7 +33,7 @@
                                     <constraint firstAttribute="width" constant="369" id="QLd-9q-xrs"/>
                                     <constraint firstAttribute="height" constant="21" id="qTQ-NY-6qr"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -52,7 +52,7 @@
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="gtC-MX-XLZ" secondAttribute="bottom" constant="32" id="ISJ-BS-h4K"/>
                             <constraint firstItem="4t8-3L-5S9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="VEm-jc-oeY"/>
                             <constraint firstItem="gtC-MX-XLZ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="YVS-DN-6BA"/>
-                            <constraint firstItem="ENQ-Rl-L61" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="40" id="mFc-sh-l9S"/>
+                            <constraint firstItem="ENQ-Rl-L61" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="32" id="mFc-sh-l9S"/>
                             <constraint firstItem="4t8-3L-5S9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zQt-84-1PD"/>
                         </constraints>
                     </view>
