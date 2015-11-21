@@ -289,10 +289,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7i-JV-G6o">
-                                <rect key="frame" x="16" y="522" width="86" height="30"/>
+                                <rect key="frame" x="16" y="498" width="86" height="30"/>
                                 <state key="normal" title="Add Text/😄"/>
                                 <connections>
                                     <action selector="addTextView:" destination="Giz-np-Yeq" eventType="touchUpInside" id="vAo-Xn-InY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4e-yj-DH8">
+                                <rect key="frame" x="8" y="522" width="84" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="84" id="CdP-sp-k3h"/>
+                                    <constraint firstAttribute="height" constant="30" id="XmN-Jd-xKJ"/>
+                                </constraints>
+                                <state key="normal" title="Text Color"/>
+                                <connections>
+                                    <action selector="selectColor:" destination="Giz-np-Yeq" eventType="touchUpInside" id="aww-he-wwz"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -302,6 +313,7 @@
                             <constraint firstItem="L7i-JV-G6o" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" id="4vx-it-9Rc"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="qbX-eg-fMK" secondAttribute="bottom" constant="16" id="4zO-K1-del"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="top" secondItem="M9r-Af-YOq" secondAttribute="bottom" constant="4" id="8Hm-az-QqA"/>
+                            <constraint firstItem="r4e-yj-DH8" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" constant="-8" id="Cbx-af-Zhq"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="DYf-b3-aRo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qbX-eg-fMK" secondAttribute="trailing" constant="12" id="EAT-nk-MW6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Psl-PY-UXL" secondAttribute="trailing" constant="-10" id="H2W-LM-hY5"/>
@@ -314,8 +326,9 @@
                             <constraint firstItem="L7i-JV-G6o" firstAttribute="top" secondItem="Psl-PY-UXL" secondAttribute="bottom" constant="19" id="PWM-em-vWX"/>
                             <constraint firstItem="VGW-kG-Gzg" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="Tl7-sH-HCi"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="Pgg-H9-em9" secondAttribute="bottom" constant="47" id="bcV-Aj-5M3"/>
-                            <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="L7i-JV-G6o" secondAttribute="bottom" constant="16" id="hy2-4F-nN2"/>
+                            <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="L7i-JV-G6o" secondAttribute="bottom" constant="40" id="hy2-4F-nN2"/>
                             <constraint firstItem="Pgg-H9-em9" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="jYI-fT-QpH"/>
+                            <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="r4e-yj-DH8" secondAttribute="bottom" constant="16" id="pQu-FC-tcI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Psl-PY-UXL" secondAttribute="trailing" constant="-8" id="yGn-wc-IDZ"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" constant="-10" id="zvJ-4j-aT2"/>
                         </constraints>

@@ -20,11 +20,15 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     @IBOutlet weak var mainImage: UIImageView!
     
     @IBOutlet weak var creationLabel: UILabel!
-
+    
     @IBAction func clearAll(sender: UIButton) {
         clearComposition()
     }
 
+    
+    @IBAction func selectColor(sender: AnyObject) {
+        _ = InteractiveColorWheel(sv: compositionView)
+    }
     
     @IBAction func addTextView(sender: AnyObject) {
         _ = InteractiveTextView(str: "Say What? 🎵", sv: compositionView)
@@ -136,10 +140,17 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
 
     // If the user taps outside of the text, stop editing it
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        for iv in interactiveViews {
-            if iv is InteractiveTextView {
-                let itv = iv as! InteractiveTextView
-                itv.endEditing()
+        if let touch = touches.first {
+            // This is a nasty little hack where I make the
+            // tag of the colorwheel == 1 so that it does not
+            // steal the focus...
+            if touch.view!.tag != 1 {
+                for iv in interactiveViews {
+                    if iv is InteractiveTextView {
+                        let itv = iv as! InteractiveTextView
+                        itv.endEditing()
+                    }
+                }
             }
         }
     }
@@ -174,9 +185,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
             _ = InteractiveImageView(artInfo: art, sv: compositionView)
         }
         selectedArt.removeAll()
-    }
-    
 
-    
+    }
 
 }

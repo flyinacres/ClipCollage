@@ -12,6 +12,7 @@ class InteractiveTextView: InteractiveView, UITextViewDelegate {
     
     var textView: UITextView
     var superView: UIView
+    var isEditing = false
     
     // Need to have a margin so that taps outside the text area will result in actions
     let itvMargin: CGFloat = 16.0
@@ -19,7 +20,7 @@ class InteractiveTextView: InteractiveView, UITextViewDelegate {
     init(str: String, sv: UIView) {
         superView = UIView()
         textView = UITextView()
-        
+    
         superView.addSubview(textView)
         
         super.init(tv: superView, sv: sv)
@@ -73,6 +74,8 @@ class InteractiveTextView: InteractiveView, UITextViewDelegate {
                 let itv = iv as! InteractiveTextView
                 if itv != self {
                     itv.endEditing()
+                } else {
+                    isEditing = true
                 }
             }
         }
@@ -84,9 +87,14 @@ class InteractiveTextView: InteractiveView, UITextViewDelegate {
     
     // Clean up as editing ends
     func endEditing() {
+        isEditing = false
         superView.backgroundColor = UIColor.clearColor()
         textView.backgroundColor = UIColor.clearColor()
         textView.endEditing(true)
+    }
+    
+    func setColor(color: UIColor) {
+        textView.textColor = color
     }
     
     // The text is changing so resize the views as appropriate

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4057CFD0ED580C238342D4D1 /* Pods_ClipCollage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2302E7B22C6E2BF321823EFF /* Pods_ClipCollage.framework */; };
+		A52D25191C003C8200FDF51A /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D25181C003C8200FDF51A /* UIImageExtension.swift */; };
+		A52D251B1C003F8400FDF51A /* ColorWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = A52D251A1C003F8400FDF51A /* ColorWheel.png */; };
+		A52D251F1C004B6500FDF51A /* InteractiveColorWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D251E1C004B6500FDF51A /* InteractiveColorWheel.swift */; };
 		A5CFD2721BFE56A400CF6EBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFD2711BFE56A400CF6EBA /* AppDelegate.swift */; };
 		A5CFD2741BFE56A400CF6EBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFD2731BFE56A400CF6EBA /* ViewController.swift */; };
 		A5CFD2771BFE56A400CF6EBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CFD2751BFE56A400CF6EBA /* Main.storyboard */; };
@@ -32,6 +35,9 @@
 		6444E8150A2FE3196DA20897 /* Pods-ClipCollage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipCollage.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClipCollage/Pods-ClipCollage.debug.xcconfig"; sourceTree = "<group>"; };
 		7CC81379F5D7C32D01A030C3 /* Pods-ClipCollage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClipCollage.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClipCollage/Pods-ClipCollage.release.xcconfig"; sourceTree = "<group>"; };
 		8C162F3B95FCB774961C2B5A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A52D25181C003C8200FDF51A /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		A52D251A1C003F8400FDF51A /* ColorWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColorWheel.png; sourceTree = "<group>"; };
+		A52D251E1C004B6500FDF51A /* InteractiveColorWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveColorWheel.swift; sourceTree = "<group>"; };
 		A5487DD21BFEE8F200611F9A /* ClipCollage-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ClipCollage-Bridging-Header.h"; sourceTree = "<group>"; };
 		A5487DD31BFEEEEF00611F9A /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		A5CFD26E1BFE56A400CF6EBA /* ClipCollage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipCollage.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +106,7 @@
 				A5487DD31BFEEEEF00611F9A /* Flurry.h */,
 				A5CFD2751BFE56A400CF6EBA /* Main.storyboard */,
 				A5CFD2941BFE581400CF6EBA /* MainViewController.swift */,
+				A52D25181C003C8200FDF51A /* UIImageExtension.swift */,
 				A5CFD2731BFE56A400CF6EBA /* ViewController.swift */,
 				A5CFD2861BFE57E800CF6EBA /* ArtInfo.swift */,
 				A5CFD2881BFE57E800CF6EBA /* ArtworkViewCell.swift */,
@@ -107,6 +114,7 @@
 				A5CFD2901BFE580700CF6EBA /* InteractiveView.swift */,
 				A5CFD28E1BFE580700CF6EBA /* InteractiveImageView.swift */,
 				A5CFD28F1BFE580700CF6EBA /* InteractiveTextView.swift */,
+				A52D251E1C004B6500FDF51A /* InteractiveColorWheel.swift */,
 				A5CFD2951BFE581400CF6EBA /* ManageArtwork.swift */,
 				A5CFD2961BFE581400CF6EBA /* Reachability.swift */,
 				A5CFD27D1BFE56A400CF6EBA /* LaunchScreen.storyboard */,
@@ -115,6 +123,7 @@
 				A5CFD2781BFE56A400CF6EBA /* ClipCollage.xcdatamodeld */,
 				A5CFD28C1BFE57FB00CF6EBA /* checkMark.png */,
 				A5CFD29A1BFE581B00CF6EBA /* trex.png */,
+				A52D251A1C003F8400FDF51A /* ColorWheel.png */,
 				A5487DD21BFEE8F200611F9A /* ClipCollage-Bridging-Header.h */,
 			);
 			path = ClipCollage;
@@ -194,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5CFD27F1BFE56A400CF6EBA /* LaunchScreen.storyboard in Resources */,
+				A52D251B1C003F8400FDF51A /* ColorWheel.png in Resources */,
 				A5CFD29B1BFE581B00CF6EBA /* trex.png in Resources */,
 				A5CFD28D1BFE57FB00CF6EBA /* checkMark.png in Resources */,
 				A5CFD27C1BFE56A400CF6EBA /* Assets.xcassets in Resources */,
@@ -260,6 +270,7 @@
 				A5CFD2991BFE581400CF6EBA /* Reachability.swift in Sources */,
 				A5CFD2921BFE580700CF6EBA /* InteractiveTextView.swift in Sources */,
 				A5CFD2741BFE56A400CF6EBA /* ViewController.swift in Sources */,
+				A52D251F1C004B6500FDF51A /* InteractiveColorWheel.swift in Sources */,
 				A5CFD2911BFE580700CF6EBA /* InteractiveImageView.swift in Sources */,
 				A5CFD2721BFE56A400CF6EBA /* AppDelegate.swift in Sources */,
 				A5CFD2931BFE580700CF6EBA /* InteractiveView.swift in Sources */,
@@ -267,6 +278,7 @@
 				A5CFD27A1BFE56A400CF6EBA /* ClipCollage.xcdatamodeld in Sources */,
 				A5CFD2891BFE57E800CF6EBA /* ArtInfo.swift in Sources */,
 				A5CFD2971BFE581400CF6EBA /* MainViewController.swift in Sources */,
+				A52D25191C003C8200FDF51A /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

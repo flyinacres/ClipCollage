@@ -149,6 +149,12 @@ class InteractiveView: NSObject {
     
     func tappedView(recognizer : UITapGestureRecognizer){
         compositionView.bringSubviewToFront(recognizer.view!)
+        
+//        if self is InteractiveColorWheel {
+//            let uiv: UIImageView = interactiveView as! UIImageView
+//            
+//            print(uiv.image?.getPixelColor(recognizer.locationInView(interactiveView)))
+//        }
     }
     
     func tapped2View(recognizer : UITapGestureRecognizer){
