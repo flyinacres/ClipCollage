@@ -102,6 +102,8 @@ class InteractiveView: NSObject {
         tap2Rec.addTarget(self, action: "tapped2View:")
         swipeRec.addTarget(self, action: "swipedView:")
         longPressRec.addTarget(self, action: "longPressedView:")
+        // Set this long enough so that acccidental deletes are avoided
+        longPressRec.minimumPressDuration = 1.5
         
         interactiveView.addGestureRecognizer(pinchRec)
         interactiveView.addGestureRecognizer(panRec)
@@ -114,6 +116,7 @@ class InteractiveView: NSObject {
     
     
     func handlePan(recognizer:UIPanGestureRecognizer) {
+
         let translation = recognizer.translationInView(compositionView)
         if let view = recognizer.view {
             view.center = CGPoint(x:view.center.x + translation.x,

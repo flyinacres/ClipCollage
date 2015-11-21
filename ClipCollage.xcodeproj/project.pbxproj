@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1428A3295C7FF5EF4670D0AE /* Pods_ClipCollage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2302E7B22C6E2BF321823EFF /* Pods_ClipCollage.framework */; };
-		4047852DFA2E8D474163A7C9 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11AD0893D7F1F46C1C59D80E /* Pods.framework */; };
+		4057CFD0ED580C238342D4D1 /* Pods_ClipCollage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2302E7B22C6E2BF321823EFF /* Pods_ClipCollage.framework */; };
 		A5CFD2721BFE56A400CF6EBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFD2711BFE56A400CF6EBA /* AppDelegate.swift */; };
 		A5CFD2741BFE56A400CF6EBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFD2731BFE56A400CF6EBA /* ViewController.swift */; };
 		A5CFD2771BFE56A400CF6EBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CFD2751BFE56A400CF6EBA /* Main.storyboard */; };
@@ -61,8 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4047852DFA2E8D474163A7C9 /* Pods.framework in Frameworks */,
-				1428A3295C7FF5EF4670D0AE /* Pods_ClipCollage.framework in Frameworks */,
+				4057CFD0ED580C238342D4D1 /* Pods_ClipCollage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,13 +380,14 @@
 			baseConfigurationReference = 6444E8150A2FE3196DA20897 /* Pods-ClipCollage.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Ronald Fischer (3T8T4BQRQJ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ClipCollage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qpiapps.ClipCollage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ClipCollage/ClipCollage-Bridging-Header.h";
 			};
 			name = Debug;
@@ -398,13 +397,14 @@
 			baseConfigurationReference = 7CC81379F5D7C32D01A030C3 /* Pods-ClipCollage.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Ronald Fischer (3T8T4BQRQJ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ClipCollage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qpiapps.ClipCollage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ClipCollage/ClipCollage-Bridging-Header.h";
 			};
 			name = Release;

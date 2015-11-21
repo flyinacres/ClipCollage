@@ -54,6 +54,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
     // The URL for searching for clip art
     let openClipArtSearchURL = "https://openclipart.org/search/json/"
     
+    // The number of pieces of art info to fetch at one time
+    let artInfoCount = 10
+    
     
     // The check mark icon for indicating the selection of artwork
     @IBOutlet weak var checkMark: UIImageView!
@@ -133,7 +136,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         Flurry.logEvent("Search_Text", withParameters: artParams);
         
         startAnimatingForWait()
-        Alamofire.request(.GET, openClipArtSearchURL, parameters: ["query": searchKey, "amount": 10, "page": pageNo, "sort": "downloads"]).validate().responseJSON { response in
+        Alamofire.request(.GET, openClipArtSearchURL, parameters: ["query": searchKey, "amount": artInfoCount, "page": pageNo, "sort": "downloads"]).validate().responseJSON { response in
             switch response.result {
             case .Success:
                 self.successfulArtFetch(response.result.value, errorMessage: "Typo?  Or make the search more general.", completion: nil)
@@ -383,6 +386,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
             return
         }
         
+//        print("fetchNextArt() artPageNo: \(artPageNo), currentImageNum: \(currentImageNum), curResult: \(curResult)")
+
         currentImageNum++
         curResult++
         
@@ -417,6 +422,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         if backButton.enabled == false {
             return
         }
+        
+//        print("fetchPreviousArt() artPageNo: \(artPageNo), currentImageNum: \(currentImageNum), curResult: \(curResult)")
         currentImageNum--
         if curResult > 0 {
             curResult--
@@ -427,10 +434,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         if currentImageNum < 0 {
             // Do not wrap backward.  Disable the back button when
             // at the first item, first page
-            currentImageNum = 0
+            currentImageNum = artInfoCount - 1
             artPageNo--
             if artPageNo <= 0  {
                 artPageNo = 0
+                currentImageNum = 0
             } else {
                 // Only get the art if we are not already at the first page
                 getArtBySearchKey(artSearchKey, pageNo: artPageNo)
