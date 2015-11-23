@@ -15,7 +15,7 @@ class InteractiveTextView: InteractiveView, UITextViewDelegate {
     var isEditing = false
     
     // Need to have a margin so that taps outside the text area will result in actions
-    let itvMargin: CGFloat = 16.0
+    let itvMargin: CGFloat = 24.0
     
     init(str: String, sv: UIView) {
         superView = UIView()

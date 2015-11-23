@@ -11,6 +11,9 @@
 		A52D25191C003C8200FDF51A /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D25181C003C8200FDF51A /* UIImageExtension.swift */; };
 		A52D251B1C003F8400FDF51A /* ColorWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = A52D251A1C003F8400FDF51A /* ColorWheel.png */; };
 		A52D251F1C004B6500FDF51A /* InteractiveColorWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52D251E1C004B6500FDF51A /* InteractiveColorWheel.swift */; };
+		A52D25211C029FFE00FDF51A /* rotatecamera.png in Resources */ = {isa = PBXBuildFile; fileRef = A52D25201C029FFE00FDF51A /* rotatecamera.png */; };
+		A52D25241C02AD6D00FDF51A /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = A52D25221C02AD6D00FDF51A /* camera.png */; };
+		A52D25251C02AD6D00FDF51A /* photo.png in Resources */ = {isa = PBXBuildFile; fileRef = A52D25231C02AD6D00FDF51A /* photo.png */; };
 		A5CFD2721BFE56A400CF6EBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFD2711BFE56A400CF6EBA /* AppDelegate.swift */; };
 		A5CFD2741BFE56A400CF6EBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CFD2731BFE56A400CF6EBA /* ViewController.swift */; };
 		A5CFD2771BFE56A400CF6EBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CFD2751BFE56A400CF6EBA /* Main.storyboard */; };
@@ -38,6 +41,9 @@
 		A52D25181C003C8200FDF51A /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		A52D251A1C003F8400FDF51A /* ColorWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColorWheel.png; sourceTree = "<group>"; };
 		A52D251E1C004B6500FDF51A /* InteractiveColorWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveColorWheel.swift; sourceTree = "<group>"; };
+		A52D25201C029FFE00FDF51A /* rotatecamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rotatecamera.png; sourceTree = "<group>"; };
+		A52D25221C02AD6D00FDF51A /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		A52D25231C02AD6D00FDF51A /* photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo.png; sourceTree = "<group>"; };
 		A5487DD21BFEE8F200611F9A /* ClipCollage-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ClipCollage-Bridging-Header.h"; sourceTree = "<group>"; };
 		A5487DD31BFEEEEF00611F9A /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		A5CFD26E1BFE56A400CF6EBA /* ClipCollage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipCollage.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +130,9 @@
 				A5CFD28C1BFE57FB00CF6EBA /* checkMark.png */,
 				A5CFD29A1BFE581B00CF6EBA /* trex.png */,
 				A52D251A1C003F8400FDF51A /* ColorWheel.png */,
+				A52D25221C02AD6D00FDF51A /* camera.png */,
+				A52D25231C02AD6D00FDF51A /* photo.png */,
+				A52D25201C029FFE00FDF51A /* rotatecamera.png */,
 				A5487DD21BFEE8F200611F9A /* ClipCollage-Bridging-Header.h */,
 			);
 			path = ClipCollage;
@@ -206,7 +215,10 @@
 				A52D251B1C003F8400FDF51A /* ColorWheel.png in Resources */,
 				A5CFD29B1BFE581B00CF6EBA /* trex.png in Resources */,
 				A5CFD28D1BFE57FB00CF6EBA /* checkMark.png in Resources */,
+				A52D25211C029FFE00FDF51A /* rotatecamera.png in Resources */,
+				A52D25251C02AD6D00FDF51A /* photo.png in Resources */,
 				A5CFD27C1BFE56A400CF6EBA /* Assets.xcassets in Resources */,
+				A52D25241C02AD6D00FDF51A /* camera.png in Resources */,
 				A5CFD2771BFE56A400CF6EBA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

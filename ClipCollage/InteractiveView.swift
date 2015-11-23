@@ -103,7 +103,7 @@ class InteractiveView: NSObject {
         swipeRec.addTarget(self, action: "swipedView:")
         longPressRec.addTarget(self, action: "longPressedView:")
         // Set this long enough so that acccidental deletes are avoided
-        longPressRec.minimumPressDuration = 1.5
+        longPressRec.minimumPressDuration = 1.2
         
         interactiveView.addGestureRecognizer(pinchRec)
         interactiveView.addGestureRecognizer(panRec)

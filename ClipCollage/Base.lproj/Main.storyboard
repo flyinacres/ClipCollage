@@ -213,10 +213,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Psl-PY-UXL">
-                                <rect key="frame" x="6" y="79" width="308" height="411"/>
+                                <rect key="frame" x="16" y="92" width="288" height="384"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="apM-9p-fxn">
-                                        <rect key="frame" x="0.0" y="0.0" width="308" height="411"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="384"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="400" id="R1D-VP-5ee"/>
                                             <constraint firstAttribute="width" constant="300" id="xvB-95-4iu"/>
@@ -229,7 +229,7 @@
                                         </variation>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKW-t2-2Bn">
-                                        <rect key="frame" x="8" y="403" width="292" height="0.0"/>
+                                        <rect key="frame" x="8" y="376" width="272" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -306,37 +306,53 @@
                                     <action selector="selectColor:" destination="Giz-np-Yeq" eventType="touchUpInside" id="aww-he-wwz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94K-oe-OZE">
+                                <rect key="frame" x="248" y="24" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="KKt-LC-RaH"/>
+                                    <constraint firstAttribute="height" constant="60" id="rax-3E-x78"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="rotatecamera.png"/>
+                                <connections>
+                                    <action selector="cameraRotate:" destination="Giz-np-Yeq" eventType="touchUpInside" id="NPa-YL-oip"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.90196084980000002" green="0.94117653369999998" blue="0.97254908080000002" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="94K-oe-OZE" secondAttribute="trailing" constant="-4" id="0Pf-ei-ZmZ"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" constant="-8" id="1lG-dS-ABq"/>
+                            <constraint firstItem="Psl-PY-UXL" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="4ia-e5-J0J"/>
                             <constraint firstItem="L7i-JV-G6o" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" id="4vx-it-9Rc"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="qbX-eg-fMK" secondAttribute="bottom" constant="16" id="4zO-K1-del"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="top" secondItem="M9r-Af-YOq" secondAttribute="bottom" constant="4" id="8Hm-az-QqA"/>
                             <constraint firstItem="r4e-yj-DH8" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" constant="-8" id="Cbx-af-Zhq"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="DYf-b3-aRo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qbX-eg-fMK" secondAttribute="trailing" constant="12" id="EAT-nk-MW6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Psl-PY-UXL" secondAttribute="trailing" constant="-10" id="H2W-LM-hY5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Psl-PY-UXL" secondAttribute="trailing" id="H2W-LM-hY5"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="euK-em-O9D" secondAttribute="bottom" constant="16" id="HSj-1K-yiI"/>
                             <constraint firstItem="Pgg-H9-em9" firstAttribute="top" secondItem="M9r-Af-YOq" secondAttribute="bottom" constant="24" id="IOa-2c-xRu"/>
                             <constraint firstItem="euK-em-O9D" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="LmD-3e-fcw"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="VGW-kG-Gzg" secondAttribute="bottom" constant="40" id="MaX-3U-WKs"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="centerY" secondItem="h2f-fr-s2c" secondAttribute="centerY" id="N8O-uY-fpO"/>
                             <constraint firstItem="Pgg-H9-em9" firstAttribute="top" secondItem="Psl-PY-UXL" secondAttribute="bottom" constant="4" id="NKM-FP-cug"/>
+                            <constraint firstItem="Psl-PY-UXL" firstAttribute="centerY" secondItem="h2f-fr-s2c" secondAttribute="centerY" id="OVS-zc-tRS"/>
                             <constraint firstItem="L7i-JV-G6o" firstAttribute="top" secondItem="Psl-PY-UXL" secondAttribute="bottom" constant="19" id="PWM-em-vWX"/>
                             <constraint firstItem="VGW-kG-Gzg" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="Tl7-sH-HCi"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="Pgg-H9-em9" secondAttribute="bottom" constant="47" id="bcV-Aj-5M3"/>
+                            <constraint firstItem="Psl-PY-UXL" firstAttribute="top" secondItem="94K-oe-OZE" secondAttribute="bottom" constant="8" id="g9h-T2-34S"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="L7i-JV-G6o" secondAttribute="bottom" constant="40" id="hy2-4F-nN2"/>
                             <constraint firstItem="Pgg-H9-em9" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="jYI-fT-QpH"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="r4e-yj-DH8" secondAttribute="bottom" constant="16" id="pQu-FC-tcI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Psl-PY-UXL" secondAttribute="trailing" constant="-8" id="yGn-wc-IDZ"/>
-                            <constraint firstItem="Psl-PY-UXL" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" constant="-10" id="zvJ-4j-aT2"/>
+                            <constraint firstItem="Psl-PY-UXL" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" id="zvJ-4j-aT2"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="1lG-dS-ABq"/>
                                 <exclude reference="8Hm-az-QqA"/>
                                 <exclude reference="DYf-b3-aRo"/>
+                                <exclude reference="N8O-uY-fpO"/>
                                 <exclude reference="yGn-wc-IDZ"/>
                                 <exclude reference="NKM-FP-cug"/>
                                 <exclude reference="PWM-em-vWX"/>
@@ -346,6 +362,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="cameraRotateButton" destination="94K-oe-OZE" id="pZT-mY-paU"/>
                         <outlet property="compositionView" destination="Psl-PY-UXL" id="ezh-J9-5io"/>
                         <outlet property="creationLabel" destination="MKW-t2-2Bn" id="jXf-6T-QyZ"/>
                         <outlet property="mainImage" destination="apM-9p-fxn" id="9tq-YI-315"/>
@@ -358,5 +375,6 @@
     </scenes>
     <resources>
         <image name="checkMark.png" width="300" height="300"/>
+        <image name="rotatecamera.png" width="284" height="300"/>
     </resources>
 </document>
