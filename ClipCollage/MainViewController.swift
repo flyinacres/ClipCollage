@@ -16,6 +16,30 @@ var curBackgroundImage: UIImage? = nil
 
 class MainViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
+    var savedBackgroundImage: UIImage?
+    
+    let captureSession = AVCaptureSession()
+    
+    // If we find a device we'll store it here for later use
+    var captureDevice : AVCaptureDevice?
+    
+    // current state of the camera rotation
+    var cameraFront = true
+    
+    var frontCamera: AVCaptureDevice? = nil
+    
+    var backCamera: AVCaptureDevice? = nil
+    
+    var liveImage = false
+    
+    let  stillImageOutput = AVCaptureStillImageOutput()
+    
+    var avcdi: AVCaptureDeviceInput?
+    
+    var previewLayer: AVCaptureVideoPreviewLayer?
+    
+    
+    
     @IBOutlet weak var compositionView: UIView!
     
     @IBOutlet weak var mainImage: UIImageView!
@@ -24,15 +48,21 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     @IBOutlet weak var cameraRotateButton: UIButton!
     
-    let captureSession = AVCaptureSession()
+    @IBOutlet weak var selectPhotoButton: UIButton!
     
-    // If we find a device we'll store it here for later use
-    var captureDevice : AVCaptureDevice?
-    
+    @IBOutlet weak var shutterButton: UIButton!
+
     @IBAction func clearAll(sender: UIButton) {
         clearComposition()
     }
-
+    
+    // Use a photo (as opposed to a live image)
+    @IBAction func usePhoto(sender: AnyObject) {
+        let image = UIImagePickerController()
+        image.delegate   = self
+        image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        image.allowsEditing = false
+        self.presentViewController(image, animated: true, completion: nil)    }
     
     @IBAction func selectColor(sender: AnyObject) {
         _ = InteractiveColorWheel(sv: compositionView)
@@ -43,13 +73,13 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
         Flurry.logEvent("Add_Text");
     }
 
-    // current state of the camera rotation
-    var cameraFront = true
-    var frontCamera: AVCaptureDevice? = nil
-    var backCamera: AVCaptureDevice? = nil
     
     @IBAction func cameraRotate(sender: AnyObject) {
         rotateCamera()
+    }
+    
+    @IBAction func takePicture(sender: AnyObject) {
+            captureLiveImage()
     }
     
     // A button or some other event caused a rotate--make it happen
@@ -71,7 +101,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
             }
             // Once this thread has finished, restart the camera...
             dispatch_async(dispatch_get_main_queue()) {
-                self.testCamera()
+                self.prepForCamera()
             }
         }
     }
@@ -87,7 +117,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
                 "imageResult:didFinishSavingWithError:contextInfo:", nil)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { action in
-            print("Click of cancel button")
+            // No action needed
+            //print("Click of cancel button")
         }))
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -104,14 +135,40 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     // Select the image which will be the base of the composition
     @IBAction func selectBaseImage(sender: AnyObject) {
-        let image = UIImagePickerController()
-        image.delegate   = self
-        // change the .PHotoLibrary to .Camera to select that
-        image.sourceType = UIImagePickerControllerSourceType.Camera
-        image.allowsEditing = false
-        
-       // self.presentViewController(image, animated: true, completion: nil)
-        testCamera()
+        if liveImage {
+            // This will clean up buttons and such
+            cleanUpLiveImage()
+            if savedBackgroundImage == nil {
+                curBackgroundImage = nil
+                mainImage.image = UIImage(named: "camera.png")
+                dispatch_async(dispatch_get_main_queue()) {
+    
+                    self.mainImage.image = nil
+                }
+                
+            } else {
+                curBackgroundImage = savedBackgroundImage
+                mainImage.image = savedBackgroundImage
+                savedBackgroundImage = nil
+            }
+            
+            // Even if the saved image is nil (no image), restore the
+            // state!
+//            dispatch_async(dispatch_get_main_queue()) {
+//
+//                self.compositionView.setNeedsDisplay()
+//                
+//                self.savedBackgroundImage = nil
+//            }
+            
+        } else {
+            let image = UIImagePickerController()
+            image.delegate   = self
+            image.sourceType = UIImagePickerControllerSourceType.Camera
+            image.allowsEditing = false
+
+            prepForCamera()
+        }
     }
     
     
@@ -142,15 +199,17 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
         mainImage.image = curBackgroundImage
         
     }
-
-    var liveImage = false
-    let  stillImageOutput = AVCaptureStillImageOutput()
-    var avcdi: AVCaptureDeviceInput?
-
     
-    func testCamera() {
+    // Prepare for taking a photo with the camera
+    func prepForCamera() {
         if captureDevice != nil {
-            cameraRotateButton.alpha = 1
+            toggleCameraButtons(true)
+            
+            // Gotta clear these so that the live image can be seen
+            // Otherwise these block that picture
+            savedBackgroundImage = curBackgroundImage
+            curBackgroundImage = nil
+            mainImage.image = nil
         
             do {
                 
@@ -162,19 +221,40 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
                 avcdi = try AVCaptureDeviceInput(device: captureDevice)
                 captureSession.addInput(avcdi)
                 
-                let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-                previewLayer.zPosition = -11
-                compositionView.layer.addSublayer(previewLayer)
-                
-                previewLayer?.frame = CGRect(x: 0, y: 0, width: compositionView.layer.frame.width, height: compositionView.layer.frame.height)
+                previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+                if previewLayer != nil {
+                    previewLayer!.zPosition = -11
+                    compositionView.layer.addSublayer(previewLayer!)
+                    
+                    previewLayer!.frame = CGRect(x: 0, y: 0, width: compositionView.layer.frame.width, height: compositionView.layer.frame.height)
 
-                captureSession.startRunning()
-                
+                    captureSession.startRunning()
+                } else {
+                    print("ERROR: Could not create the preview layer for live image capture")
+                    cleanUpLiveImage()
+                }
             } catch {
                 print("error: \(error)")
             }
         }
 
+    }
+    
+    // Clean up and reset the variables associated with live image selection
+    func cleanUpLiveImage() {
+        if liveImage {
+            if captureSession.running {
+                captureSession.stopRunning()
+                captureSession.removeInput(self.avcdi)
+            }
+            if previewLayer != nil {
+                previewLayer?.removeFromSuperlayer()
+            }
+            liveImage = false
+            
+            // No need to see the rotation or shutter buttons any more
+            toggleCameraButtons(false)
+        }
     }
     
     
@@ -184,19 +264,39 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
                 let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
                 let dataProvider = CGDataProviderCreateWithCFData(imageData)
                 let cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, CGColorRenderingIntent.RenderingIntentDefault)
-                curBackgroundImage = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.Right)
                 
+                // Make sure to flip the camera properly based upon which way it
+                // is facing
+                var uiOrientation = UIImageOrientation.Right
+                if self.captureDevice == self.frontCamera {
+                    // TODO: This changed for no known reason...
+                    uiOrientation = UIImageOrientation.LeftMirrored
+                }
+                curBackgroundImage = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: uiOrientation)
+                    
                 self.mainImage.image = curBackgroundImage
-                self.captureSession.stopRunning()
-                self.liveImage = false
-                
-                // No need to see the rotation button any more
-                self.cameraRotateButton.alpha = 0
-                
+
+                self.cleanUpLiveImage()
             })
         }
         
         // This is async, so nothing to do in this thread
+    }
+    
+    // Toggle the camera buttons enabled/disabled together
+    func toggleCameraButtons(toggle: Bool) {
+        var alpha: CGFloat = 0
+        
+        if toggle {
+            alpha = 1
+        }
+        cameraRotateButton.alpha = alpha
+        cameraRotateButton.enabled = toggle
+        shutterButton.alpha = alpha
+        shutterButton.enabled = toggle
+        
+        selectPhotoButton.alpha = 1 - alpha
+        selectPhotoButton.enabled = !toggle
     }
  
     
@@ -209,8 +309,10 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
 
     // Clear everything so that users can start again
     func clearComposition() {
+        cleanUpLiveImage()
+        
         curBackgroundImage = nil
-        mainImage = nil
+        mainImage.image = nil
         interactiveViews.removeAll()
         for subview in compositionView.subviews {
             subview.removeFromSuperview()
@@ -225,6 +327,12 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
 
     
     func saveEntireView(saveView: UIView) -> UIImage {
+        // If they are saving a live image, take the picture!
+        if liveImage {
+            captureLiveImage()
+        }
+        
+        
         creationLabel.text = "Created with ClipCollage, by qpiapps.com"
         view.bringSubviewToFront(creationLabel)
         UIGraphicsBeginImageContext(saveView.bounds.size);
@@ -240,20 +348,15 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
 
     // If the user taps outside of the text, stop editing it
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if liveImage {
-            // This is async so don't wait for it
-            captureLiveImage()
-        } else {
-            if let touch = touches.first {
-                // This is a nasty little hack where I make the
-                // tag of the colorwheel == 1 so that it does not
-                // steal the focus...
-                if touch.view!.tag != 1 {
-                    for iv in interactiveViews {
-                        if iv is InteractiveTextView {
-                            let itv = iv as! InteractiveTextView
-                            itv.endEditing()
-                        }
+        if let touch = touches.first {
+            // This is a nasty little hack where I make the
+            // tag of the colorwheel == 1 so that it does not
+            // steal the focus...
+            if touch.view!.tag != 1 {
+                for iv in interactiveViews {
+                    if iv is InteractiveTextView {
+                        let itv = iv as! InteractiveTextView
+                        itv.endEditing()
                     }
                 }
             }
@@ -312,7 +415,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
         // default to the back camera--this will happen based on the default state of cameraFront
         rotateCamera()
         // Hide the button until a picture starts
-        cameraRotateButton.alpha = 0
+        toggleCameraButtons(false)
         
         stillImageOutput.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
         captureSession.addOutput(stillImageOutput)

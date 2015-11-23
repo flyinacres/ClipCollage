@@ -140,9 +140,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
             switch response.result {
             case .Success:
                 self.successfulArtFetch(response.result.value, errorMessage: "Typo?  Or make the search more general.", completion: nil)
-            case .Failure(let error):
+                
+            case .Failure:
                 self.stopAnimatingForWait()
-                print(error)
+                let alert = UIAlertView(title: "Error Searching for Clipart", message: "Please ensure internet access, then restart this app.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
             }
         }
     }
@@ -159,9 +161,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
                 if completion != nil {
                     completion()
                 }
-            case .Failure(let error):
+                
+            case .Failure:
                 self.stopAnimatingForWait()
-                print(error)
+                let alert = UIAlertView(title: "Could Not Fetch Initial Clipart", message: "Please ensure internet access, then restart this app.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
             }
         }
     }
@@ -486,7 +490,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         }
         
         if persistentArt.count == 0 {
-            getArtByIds(preloadedArt, completion: preloadArtwork)
+            getArtByIds(preloadedArt0, completion: preloadArtwork)
+            getArtByIds(preloadedArt1, completion: preloadArtwork)
+            getArtByIds(preloadedArt2, completion: preloadArtwork)
         }
     }
     

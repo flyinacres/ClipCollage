@@ -275,10 +275,25 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgg-H9-em9">
-                                <rect key="frame" x="92" y="44" width="136" height="30"/>
-                                <state key="normal" title="Choose Base Image"/>
+                                <rect key="frame" x="16" y="24" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="x4n-YQ-FKk"/>
+                                    <constraint firstAttribute="width" constant="60" id="ybJ-DI-Yqx"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="camera.png"/>
                                 <connections>
                                     <action selector="selectBaseImage:" destination="Giz-np-Yeq" eventType="touchUpInside" id="CQi-hD-vCp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3r-ai-Wcp">
+                                <rect key="frame" x="96" y="24" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="gWe-Bg-Jfa"/>
+                                    <constraint firstAttribute="width" constant="60" id="tkG-Zr-aNy"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="photo.png"/>
+                                <connections>
+                                    <action selector="usePhoto:" destination="Giz-np-Yeq" eventType="touchUpInside" id="R7g-Yd-wFi"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGW-kG-Gzg">
@@ -317,6 +332,17 @@
                                     <action selector="cameraRotate:" destination="Giz-np-Yeq" eventType="touchUpInside" id="NPa-YL-oip"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWc-cs-YVp">
+                                <rect key="frame" x="172" y="24" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="HRz-oY-9Le"/>
+                                    <constraint firstAttribute="width" constant="60" id="m4Y-ZH-kzK"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="shutter.png"/>
+                                <connections>
+                                    <action selector="takePicture:" destination="Giz-np-Yeq" eventType="touchUpInside" id="dLu-EO-c1m"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.90196084980000002" green="0.94117653369999998" blue="0.97254908080000002" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -331,6 +357,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="qbX-eg-fMK" secondAttribute="trailing" constant="12" id="EAT-nk-MW6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Psl-PY-UXL" secondAttribute="trailing" id="H2W-LM-hY5"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="euK-em-O9D" secondAttribute="bottom" constant="16" id="HSj-1K-yiI"/>
+                            <constraint firstItem="Pgg-H9-em9" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" id="Hve-jI-pmt"/>
                             <constraint firstItem="Pgg-H9-em9" firstAttribute="top" secondItem="M9r-Af-YOq" secondAttribute="bottom" constant="24" id="IOa-2c-xRu"/>
                             <constraint firstItem="euK-em-O9D" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="LmD-3e-fcw"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="VGW-kG-Gzg" secondAttribute="bottom" constant="40" id="MaX-3U-WKs"/>
@@ -338,23 +365,32 @@
                             <constraint firstItem="Pgg-H9-em9" firstAttribute="top" secondItem="Psl-PY-UXL" secondAttribute="bottom" constant="4" id="NKM-FP-cug"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="centerY" secondItem="h2f-fr-s2c" secondAttribute="centerY" id="OVS-zc-tRS"/>
                             <constraint firstItem="L7i-JV-G6o" firstAttribute="top" secondItem="Psl-PY-UXL" secondAttribute="bottom" constant="19" id="PWM-em-vWX"/>
+                            <constraint firstItem="Psl-PY-UXL" firstAttribute="top" secondItem="zWc-cs-YVp" secondAttribute="bottom" constant="8" id="Pxu-pV-zEZ"/>
                             <constraint firstItem="VGW-kG-Gzg" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="Tl7-sH-HCi"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="Pgg-H9-em9" secondAttribute="bottom" constant="47" id="bcV-Aj-5M3"/>
+                            <constraint firstItem="Psl-PY-UXL" firstAttribute="top" secondItem="F3r-ai-Wcp" secondAttribute="bottom" constant="8" id="fwh-Sg-xWu"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="top" secondItem="94K-oe-OZE" secondAttribute="bottom" constant="8" id="g9h-T2-34S"/>
+                            <constraint firstItem="F3r-ai-Wcp" firstAttribute="leading" secondItem="Pgg-H9-em9" secondAttribute="trailing" constant="20" id="hIn-bP-h25"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="L7i-JV-G6o" secondAttribute="bottom" constant="40" id="hy2-4F-nN2"/>
+                            <constraint firstItem="Psl-PY-UXL" firstAttribute="top" secondItem="Pgg-H9-em9" secondAttribute="bottom" constant="8" id="iLl-Iz-Gb3"/>
                             <constraint firstItem="Pgg-H9-em9" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="jYI-fT-QpH"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="r4e-yj-DH8" secondAttribute="bottom" constant="16" id="pQu-FC-tcI"/>
+                            <constraint firstItem="94K-oe-OZE" firstAttribute="leading" secondItem="zWc-cs-YVp" secondAttribute="trailing" constant="16" id="riU-6K-sRn"/>
+                            <constraint firstItem="zWc-cs-YVp" firstAttribute="leading" secondItem="F3r-ai-Wcp" secondAttribute="trailing" constant="16" id="ufs-05-wgj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Psl-PY-UXL" secondAttribute="trailing" constant="-8" id="yGn-wc-IDZ"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" id="zvJ-4j-aT2"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="IOa-2c-xRu"/>
+                                <exclude reference="NKM-FP-cug"/>
+                                <exclude reference="jYI-fT-QpH"/>
                                 <exclude reference="1lG-dS-ABq"/>
                                 <exclude reference="8Hm-az-QqA"/>
                                 <exclude reference="DYf-b3-aRo"/>
                                 <exclude reference="N8O-uY-fpO"/>
                                 <exclude reference="yGn-wc-IDZ"/>
-                                <exclude reference="NKM-FP-cug"/>
+                                <exclude reference="0Pf-ei-ZmZ"/>
                                 <exclude reference="PWM-em-vWX"/>
                                 <exclude reference="bcV-Aj-5M3"/>
                             </mask>
@@ -366,6 +402,8 @@
                         <outlet property="compositionView" destination="Psl-PY-UXL" id="ezh-J9-5io"/>
                         <outlet property="creationLabel" destination="MKW-t2-2Bn" id="jXf-6T-QyZ"/>
                         <outlet property="mainImage" destination="apM-9p-fxn" id="9tq-YI-315"/>
+                        <outlet property="selectPhotoButton" destination="F3r-ai-Wcp" id="xOa-dw-YpH"/>
+                        <outlet property="shutterButton" destination="zWc-cs-YVp" id="U2u-j5-vwf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gz5-Oz-6zD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -374,7 +412,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera.png" width="300" height="234"/>
         <image name="checkMark.png" width="300" height="300"/>
+        <image name="photo.png" width="299" height="276"/>
         <image name="rotatecamera.png" width="284" height="300"/>
+        <image name="shutter.png" width="300" height="300"/>
     </resources>
 </document>
