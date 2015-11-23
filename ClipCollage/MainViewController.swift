@@ -135,6 +135,9 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
     
     // Select the image which will be the base of the composition
     @IBAction func selectBaseImage(sender: AnyObject) {
+        
+        // Second tap of the camera icon (while the image is live) means
+        // stop the camera
         if liveImage {
             // This will clean up buttons and such
             cleanUpLiveImage()
@@ -151,15 +154,6 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
                 mainImage.image = savedBackgroundImage
                 savedBackgroundImage = nil
             }
-            
-            // Even if the saved image is nil (no image), restore the
-            // state!
-//            dispatch_async(dispatch_get_main_queue()) {
-//
-//                self.compositionView.setNeedsDisplay()
-//                
-//                self.savedBackgroundImage = nil
-//            }
             
         } else {
             let image = UIImagePickerController()
@@ -315,7 +309,13 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, UIIm
         mainImage.image = nil
         interactiveViews.removeAll()
         for subview in compositionView.subviews {
-            subview.removeFromSuperview()
+            
+            // The creation label/watermark should always be there, although it is usuaslly
+            // hidden.  Likewise, the mainImage should always be present, although it may be
+            // blank
+            if subview != creationLabel && subview != mainImage {
+                subview.removeFromSuperview()
+            }
         }
     }
 
