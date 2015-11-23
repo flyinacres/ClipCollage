@@ -34,13 +34,22 @@ class InteractiveColorWheel: InteractiveView {
         iiv.setViewProperties(newPoint, theTransform: t.theTransform, theZPosition: t.theZPosition + 1)
     }
     
+    override func tapped2View(recognizer : UITapGestureRecognizer){
+        
+        // WHOA--notice that instead of duplicating the color wheel, a double tap is just the same as a single tap
+        super.tappedView(recognizer)
+    }
+    
+    
+    // Caution-if the base image changes these values must change
+    let colorWheelSize: CGFloat = 730
     override func tappedView(recognizer : UITapGestureRecognizer){
         super.tappedView(recognizer)
         var point = recognizer.locationInView(uiv)
         // Scale the point from the current position, to the position it
         // would have in the full size image
-        point.x = point.x / uiv.bounds.width * 780
-        point.y = point.y / uiv.bounds.height * 780
+        point.x = point.x / uiv.bounds.width * colorWheelSize
+        point.y = point.y / uiv.bounds.height * colorWheelSize
         
         let selectedColor = uiv.image?.getPixelColor(point)
         
