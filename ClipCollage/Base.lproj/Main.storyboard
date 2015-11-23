@@ -146,6 +146,16 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="MiT-z6-zAR"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJn-co-Rxy">
+                                <rect key="frame" x="34" y="64" width="252" height="32"/>
+                                <color key="backgroundColor" red="0.90196084980000002" green="0.94117653369999998" blue="0.97254908080000002" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="PTn-bf-DiE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90196084980000002" green="0.94117653369999998" blue="0.97254908080000002" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -155,6 +165,7 @@
                             <constraint firstItem="uhE-fv-wLj" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-5" id="BlU-w4-fst"/>
                             <constraint firstItem="VNS-vz-Cvb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="22" id="CeP-XO-lJC"/>
                             <constraint firstItem="kyA-Lk-BeO" firstAttribute="top" secondItem="vEE-PC-ukf" secondAttribute="bottom" constant="4" id="Cpw-dd-Ulm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uJn-co-Rxy" secondAttribute="trailing" constant="18" id="HHV-K7-QZE"/>
                             <constraint firstItem="vEE-PC-ukf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Oxs-K3-abI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VNS-vz-Cvb" secondAttribute="trailing" constant="22" id="RfB-0q-yjE"/>
                             <constraint firstItem="vEE-PC-ukf" firstAttribute="top" secondItem="cDh-vJ-d8E" secondAttribute="bottom" constant="28" id="SYc-2d-sp7"/>
@@ -162,6 +173,7 @@
                             <constraint firstItem="rgj-wm-DTE" firstAttribute="leading" secondItem="vEE-PC-ukf" secondAttribute="trailing" constant="23" id="TlT-K3-QQo"/>
                             <constraint firstItem="uhE-fv-wLj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VAE-Po-hqq"/>
                             <constraint firstItem="2GB-kM-hPr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yse-L2-GxO"/>
+                            <constraint firstItem="uJn-co-Rxy" firstAttribute="top" secondItem="2GB-kM-hPr" secondAttribute="bottom" constant="4" id="abW-Di-kXc"/>
                             <constraint firstItem="kyA-Lk-BeO" firstAttribute="top" secondItem="rgj-wm-DTE" secondAttribute="bottom" constant="4" id="bVM-HS-fOe"/>
                             <constraint firstItem="kyA-Lk-BeO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ftp-Dg-VVm"/>
                             <constraint firstItem="Tkk-HO-5fC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ja7-ko-6Jq"/>
@@ -173,12 +185,15 @@
                             <constraint firstItem="9IJ-K5-foq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qL2-Ej-jje"/>
                             <constraint firstItem="vEE-PC-ukf" firstAttribute="leading" secondItem="GGo-VP-QVW" secondAttribute="trailing" constant="25" id="thV-Jr-FLT"/>
                             <constraint firstItem="vEE-PC-ukf" firstAttribute="top" secondItem="9IJ-K5-foq" secondAttribute="bottom" constant="8" id="u7d-wa-5NJ"/>
+                            <constraint firstItem="9IJ-K5-foq" firstAttribute="top" secondItem="uJn-co-Rxy" secondAttribute="bottom" id="uAt-cm-usc"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GGo-VP-QVW" secondAttribute="bottom" constant="50" id="uMN-K5-h3l"/>
                             <constraint firstItem="VNS-vz-Cvb" firstAttribute="top" secondItem="t4y-m2-Ybt" secondAttribute="bottom" constant="4" id="vXo-2K-wqU"/>
+                            <constraint firstItem="uJn-co-Rxy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="18" id="x2h-fZ-3cs"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="nqK-At-xwr"/>
+                                <exclude reference="uAt-cm-usc"/>
                                 <exclude reference="4wu-ek-djf"/>
                             </mask>
                         </variation>
@@ -193,6 +208,7 @@
                         <outlet property="countLabel" destination="cDh-vJ-d8E" id="umF-KP-bTZ"/>
                         <outlet property="nextButton" destination="rgj-wm-DTE" id="oPz-gN-2gC"/>
                         <outlet property="selectButton" destination="vEE-PC-ukf" id="WIz-Da-uYs"/>
+                        <outlet property="statusLabel" destination="uJn-co-Rxy" id="RRs-wT-CN6"/>
                         <outlet property="titleLabel" destination="9IJ-K5-foq" id="8z6-0j-C10"/>
                     </connections>
                 </viewController>

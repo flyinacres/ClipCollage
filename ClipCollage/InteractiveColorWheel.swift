@@ -16,7 +16,7 @@ class InteractiveColorWheel: InteractiveView {
         let image = UIImage(named: "ColorWheel.png")
         uiv = UIImageView(image: image!)
         super.init(tv: uiv, sv: sv)
-        uiv.bounds = CGRectMake(0, 0, 300, 300)
+        uiv.bounds = CGRectMake(0, 0, 150, 150)
         uiv.center = sv.center
         
         

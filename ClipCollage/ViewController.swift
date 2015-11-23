@@ -85,6 +85,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
     // The search text for picking new artwork
     @IBOutlet weak var artType: UITextField!
     
+    // Label useful for putting out status info
+    @IBOutlet weak var statusLabel: UILabel!
+    
     // The button indicating that new artwork should be searched for
     @IBAction func searchArt(sender: AnyObject) {
         searchForNewArt()
@@ -160,12 +163,16 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
                 self.successfulArtFetch(response.result.value, errorMessage: "Connect to Internet, restart app.", completion: nil)
                 if completion != nil {
                     completion()
+                } else {
+                    self.statusLabel.alpha = 0
                 }
                 
-            case .Failure:
+            case .Failure(let error):
                 self.stopAnimatingForWait()
                 let alert = UIAlertView(title: "Could Not Fetch Initial Clipart", message: "Please ensure internet access, then restart this app.", delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
+                self.statusLabel.alpha = 0
+                print(error)
             }
         }
     }
@@ -490,9 +497,20 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         }
         
         if persistentArt.count == 0 {
-            getArtByIds(preloadedArt0, completion: preloadArtwork)
-            getArtByIds(preloadedArt1, completion: preloadArtwork)
-            getArtByIds(preloadedArt2, completion: preloadArtwork)
+            statusLabel.alpha = 1
+            statusLabel.text = "Fetching default clip art info..."
+            ManageArtwork.preloadArt()
+            artworkCollectionView.reloadData()
+            statusLabel.alpha = 0
+            
+            
+            
+            // First clear any partial data
+            //ManageArtwork.deleteData()
+            
+//            getArtByIds(preloadedArt0, completion: preloadArtwork)
+//           getArtByIds(preloadedArt1, completion: preloadArtwork)
+//            getArtByIds(preloadedArt2, completion: preloadArtwork)
         }
     }
     
@@ -500,11 +518,14 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
     // successfully fetched the info the preloadedArtwork
     func preloadArtwork() {
         
+        statusLabel.text = "Fetching default clip art images..."
+        
         // This will be incremented for each image, but only after they are saved
         currentImageNum = 0
         
         // This assumes one page of results
         for var i = 0; i < totalResults; i++ {
+            
             loadImageAlamoStyle(i, completion: saveWhenImageLoaded)
         }
     }
@@ -534,6 +555,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
                 dispatch_async(dispatch_get_main_queue(),  {
                     self.artworkCollectionView.reloadData()
                     currentImageNum = 0
+                    self.statusLabel.alpha = 0
                 })
             }
         }
