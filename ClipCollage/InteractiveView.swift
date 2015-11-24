@@ -148,13 +148,12 @@ class InteractiveView: NSObject {
     }
     
     func tappedView(recognizer : UITapGestureRecognizer){
-        compositionView.bringSubviewToFront(recognizer.view!)
-        
-//        if self is InteractiveColorWheel {
-//            let uiv: UIImageView = interactiveView as! UIImageView
-//            
-//            print(uiv.image?.getPixelColor(recognizer.locationInView(interactiveView)))
-//        }
+        // If it is in front, send it back.  If it is not in front, bring it there
+        if compositionView.subviews[compositionView.subviews.count - 1] == recognizer.view! {
+            compositionView.sendSubviewToBack(recognizer.view!)
+        } else {
+            compositionView.bringSubviewToFront(recognizer.view!)
+        }
     }
     
     func tapped2View(recognizer : UITapGestureRecognizer){
@@ -168,8 +167,9 @@ class InteractiveView: NSObject {
     
     func longPressedView(recognizer : UILongPressGestureRecognizer){
         
-        // Make sure that this is only fired once, so wait until end
-        if recognizer.state == UIGestureRecognizerState.Ended {
+        // 'Began' happens only once--by doing this now instead of waiting until
+        // 'End' the user knows that the delete has occurred
+        if recognizer.state == UIGestureRecognizerState.Began {
             remove()
         }
     }
