@@ -320,7 +320,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7i-JV-G6o">
-                                <rect key="frame" x="16" y="498" width="86" height="30"/>
+                                <rect key="frame" x="16" y="502" width="86" height="26"/>
                                 <state key="normal" title="Add Text/😄"/>
                                 <connections>
                                     <action selector="addTextView:" destination="Giz-np-Yeq" eventType="touchUpInside" id="vAo-Xn-InY"/>
@@ -363,6 +363,7 @@
                         <color key="backgroundColor" red="0.90196084980000002" green="0.94117653369999998" blue="0.97254908080000002" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="94K-oe-OZE" secondAttribute="trailing" constant="-4" id="0Pf-ei-ZmZ"/>
+                            <constraint firstItem="L7i-JV-G6o" firstAttribute="top" secondItem="Psl-PY-UXL" secondAttribute="bottom" constant="26" id="15r-ip-rVl"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" constant="-8" id="1lG-dS-ABq"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="4ia-e5-J0J"/>
                             <constraint firstItem="L7i-JV-G6o" firstAttribute="leading" secondItem="h2f-fr-s2c" secondAttribute="leadingMargin" id="4vx-it-9Rc"/>
@@ -386,6 +387,7 @@
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="top" secondItem="zWc-cs-YVp" secondAttribute="bottom" constant="8" id="Pxu-pV-zEZ"/>
                             <constraint firstItem="VGW-kG-Gzg" firstAttribute="centerX" secondItem="h2f-fr-s2c" secondAttribute="centerX" id="Tl7-sH-HCi"/>
                             <constraint firstItem="Za4-cu-GcC" firstAttribute="top" secondItem="Pgg-H9-em9" secondAttribute="bottom" constant="47" id="bcV-Aj-5M3"/>
+                            <constraint firstItem="Psl-PY-UXL" firstAttribute="top" secondItem="zWc-cs-YVp" secondAttribute="bottom" constant="8" id="dMk-Cz-cfY"/>
                             <constraint firstItem="94K-oe-OZE" firstAttribute="top" secondItem="M9r-Af-YOq" secondAttribute="bottom" constant="4" id="de8-hE-jpT"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="top" secondItem="F3r-ai-Wcp" secondAttribute="bottom" constant="8" id="fwh-Sg-xWu"/>
                             <constraint firstItem="Psl-PY-UXL" firstAttribute="top" secondItem="94K-oe-OZE" secondAttribute="bottom" constant="8" id="g9h-T2-34S"/>

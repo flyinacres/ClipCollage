@@ -289,6 +289,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UICollectionViewDel
         iv.addGestureRecognizer(swipeRecRight)
         iv.userInteractionEnabled = true
         iv.center = CGPoint(x: view.center.x, y: view.center.y + 10)
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let scale: CGFloat = screenSize.height / 800
+        
+        // Scale the art so it doesn't take up too much space
+        iv.transform = CGAffineTransformScale(view.transform,
+            scale, scale)
         
         view.addSubview(iv)
         
