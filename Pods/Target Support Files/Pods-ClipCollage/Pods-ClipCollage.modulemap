@@ -1,0 +1,6 @@
+framework module Pods_ClipCollage {
+  umbrella header "Pods-ClipCollage-umbrella.h"
+
+  export *
+  module * { export * }
+}
